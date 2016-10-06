@@ -8,8 +8,7 @@ public class JimmyMain {
 		static boolean inMainLoop;
 		static Scanner input;
 		static String user;
-		//list all chatbots available under this class
-//		static chatbot school;
+
 		static Chatbot books;
 		static Chatbot sports;
 		static Chatbot games;
@@ -17,10 +16,8 @@ public class JimmyMain {
 		
 				
 		public static void main(String[] args) {
-			//demonstrateStringMethods();
 			createField(); 
 			promptName();
-			//promptInput();
 			promptForever();
 		}
 		
@@ -39,100 +36,94 @@ public class JimmyMain {
 					print("I will not take " + response + " for an answer");
 					print(user + ", can you tell me what your hobby is?");
 				}
-				//response to liking school
-				else if(findKeyword(response, "games", 0) >= 0){
-					print("Oh I love games as well. Tell me what your favorite game platform is.");
-					//exit while loop
+				else if(games.isTriggered(response)){
+					print("Oh I love "+ response +" as well. Tell me what your favorite game platform is.");
 					inMainLoop = false;
-					//go to school's talk method
 					games.talk();
 				}
-				else if(findKeyword(response, "sports", 0) >= 0){
+	/*			else if(sports.isTriggered(response)){
 					print("Oh I love sports as well. Tell me what your favorite sport is.");
 					//exit while loop
 					inMainLoop = false;
 					//go to school's talk method
 					sports.talk();
-				}
+				} 
 				else if(findKeyword(response, "books", 0) >= 0){
 					print("Oh I love reading books as well. Tell me what your favorite genre is.");
 					//exit while loop
 					inMainLoop = false;
 					//go to school's talk method
 					books.talk();
-				}
-				else if(findKeyword(response, "math", 0) >= 0){
-					print("Oh I love math as well. Would you like me to calculate something?");
-					//exit while loop
+				} */
+				else if(calculator.isTriggered(response)){
+					print("Oh I love " + response +  " as well. Would you like me to calculate something?");
 					inMainLoop = false;
-					//go to school's talk method
 					calculator.talk();
 				}
-				else{
+				else if (findKeyword(response, "yes", 0) >= 0 || 
+						findKeyword(response, "ok", 0) >= 0 ||
+						findKeyword(response, "fine", 0) >= 0){
 					print("Ok, tell me what it is then.");
+				}
+				else {
+					print("I do not understand your gibberish.");
 				}
 			}
 		}
 
 		public static int findKeyword(String searchString, String keyword, int startPos) {
-			//deletes white space
+
 			searchString = searchString.trim();
 			searchString = searchString.toLowerCase();
 			keyword = keyword.toLowerCase();  
-			System.out.println("The phrase is " + searchString);
-			System.out.println("The keyword is " + keyword);
-			//find first position of keyword
+
+
 			int pos = searchString.indexOf(keyword);
-			System.out.println("The keyword was found at " + pos);
+
 			
-			//keep searching until keyword found
+		
 			while(pos >= 0){
-				//assume preceded and followed by space
+		
 				String before = "";
 				String after = "";
-				//check char in front if it exists
+	
 				if(pos > 0){
 					before = searchString.substring(pos-1, pos);
-					System.out.println("The character before is " + before);
-					
+		
 				}
-				//check if there is a char after keyword
+			
 				if(pos + keyword.length() < searchString.length()){
 					after = searchString.substring(pos + keyword.length(), pos + keyword.length());
-					System.out.println("The character after is " + after);
+					
 				}
 				if(before.compareTo("a") < 0 && after.compareTo("a") < 0 && noNegations(searchString, pos)){
-					System.out.println("Found " + keyword + " at " + pos);
+			
 					return pos;
-				}else{
-					//pos+1 is one space after after our current pos, so this finds NEXT word
+				}
+				else{
+
 					pos = searchString.indexOf(keyword, pos+1);
-					System.out.println("Did not find " + keyword + ", checking position " + pos);
+					
 				}
 			}
 			
 			return -1;
 		}
 
-		//"Helper method" - helps larger method. Thus, they are private b/c 
-		//they are used only the methods they help. Helps readability.
-		//returns true is there are no negation words in front of pos
 		private static boolean noNegations(String searchString, int pos) {
-			//check to see if no is in front of pos
-			//check to see if there are spaces in front
-			//then check to see if "no" is there
+		
 			if(pos-3 >= 0 && searchString.substring(pos-3,pos).equals("no ")){
 				return false;
 			}
-			//check for not
+	
 			if(pos-4 >= 0 && searchString.substring(pos-4,pos).equals("not ")){
 				return false;
 			}
-			//check for never
+		
 			if(pos-6 >= 0 && searchString.substring(pos-6,pos).equals("never ")){
 				return false;
 			}
-			//check for n't
+		
 			if(pos-4 >= 0 && searchString.substring(pos-4,pos).equals("n't ")){
 				return false;
 			}
@@ -147,8 +138,7 @@ public class JimmyMain {
 		public static void createField() {
 			input = new Scanner(System.in);
 			user = "";
-			//initialize group chatbots below
-		//	school = new JimmySchool();
+
 			games = new JimmyGames();
 			calculator = new JimmyCalculator();
 	//		sports = new JosephSports();
@@ -176,24 +166,21 @@ public class JimmyMain {
 		public static void print(String text){
 			String printString = "";
 			int cutoff = 35;
-			//check for words to add
-			//IOW text has a length > 0
+
 			while(text.length() > 0){
 				String cut = "";
 				String nextWord = "";
-				//check to see if next word will fit on the line AND
-				//there must still be words to add
+			
 				while(cut.length() + nextWord.length() < cutoff && text.length() > 0){
-					//add the next word to line
+		
 					cut += nextWord;
 					
 					text = text.substring(nextWord.length());
-					
-					//identify following word w/o space
+			
 					int endOfWord = text.indexOf(" ");
-					//if there are no more spaces, this is the last word
+	
 					if(endOfWord == -1){
-						endOfWord = text.length()-1; // -1 is for index
+						endOfWord = text.length()-1;
 					}
 					nextWord = text.substring(0,endOfWord+1);
 					
@@ -202,11 +189,7 @@ public class JimmyMain {
 			}
 			
 			
-			/*if (printString.length() > cutoff){
-				for(int i = 0; i*cutoff < text.length(); i++){
-					printString += getCut(text, cutoff, i+1) + "\n";
-				}
-			}*/
+
 			System.out.println(printString);
 		}
 		
@@ -218,7 +201,7 @@ public class JimmyMain {
 			String currentCut = text.substring(0, cutIndex);
 			
 			int indexOfLastSpace = currentCut.length()-1;
-			//start at last index, go backwards
+
 			for(int i = currentCut.length()-1; i >= 0; i--){
 				String letter = currentCut.substring(i, i+1);
 				if(letter.equals(" ")){
@@ -226,7 +209,7 @@ public class JimmyMain {
 					break;
 				}
 			}
-			//shorten cut to end on space
+	
 			currentCut = currentCut.substring(0, indexOfLastSpace);
 			
 			return currentCut;

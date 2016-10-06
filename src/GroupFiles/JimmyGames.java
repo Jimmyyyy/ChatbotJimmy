@@ -45,15 +45,15 @@ public class JimmyGames implements Chatbot {
 	
 	
 	public  boolean isTriggered(String userInput) {
-		String[] triggers = {"pc","xbox","ps4","wii"};
+		String[] triggers = {"games"};
 		for(int i = 0; i< triggers.length; i++) {
 			if (JimmyMain.findKeyword(userInput,triggers[i],0)
 					>= 0) {
 				return true;
 			}
-		return false;
+	
 		}
-		return inPlatformLoop;
+		return false;
 	}
 } 
 	
