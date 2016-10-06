@@ -23,7 +23,7 @@ public class JimmyCalculator implements Chatbot {
 				String firstnum =  input.next();
 				int num1 = Integer.parseInt(firstnum.replaceAll("[\\D]", "")); // removes all non digits
 				JimmyMain.print("Your first number is " + num1 + ". Is that correct?");
-				if ()
+				
 			}
 			else {
 				JimmyMain.print("That answer was good too");				
