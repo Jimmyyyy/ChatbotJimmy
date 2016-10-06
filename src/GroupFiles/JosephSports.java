@@ -4,7 +4,7 @@ package GroupFiles;
 	private static String response;
 	private boolean inSportLoop;
 	static boolean inMainLoop;
-	public String Sports;
+	public String[] sports = {"baseball", "basketball", "hockey", "football"};
 	public String[] baseballResponse = {};
 	public String[] basketballResponse = {};
 	public String[] hockeyResponse = {};
@@ -37,11 +37,9 @@ package GroupFiles;
 	public static void talkforever(){
 		inMainLoop = true;
 		while (inMainLoop) {
-			JimmyMain.print("What is your favorite sport?");
-			response = JimmyMain.promptInput();
 			if (JimmyMain.findKeyword(response, "sports[]", 0) >= 0) {
 				JimmyMain.print("That's wonderful.");
-				
+				conversation();
 			} else if (response.indexOf("books") >= 0) {
 				JimmyMain.print("Books are cool, tell me about them.");
 				inMainLoop = false;
@@ -55,6 +53,12 @@ package GroupFiles;
 				JimmyMain.print("I am sorry, but I am unfamiliar with that sport.");
 			}
 		}
+	}
+	
+	public static void conversation(){
+		JimmyMain.print("What sport do you want to talk about?");
+		response = JimmyMain.promptInput();
+		
 	}
 }
 
