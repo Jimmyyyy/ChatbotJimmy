@@ -14,8 +14,8 @@ package GroupFiles;
 	private String userGenre;
 	//public String[] Mystery = {"a", "b","c","d","e"};
 //	public String[] Horror = {"a", "b","c","d","e"};
-	public int Yes = JimmyMain.findKeyword(readF, "yes", 0);
-	public int No = JimmyMain.findKeyword(readF, "no", 0);
+	public int yes = JimmyMain.findKeyword(readF, "yes", 0);
+	public int no = JimmyMain.findKeyword(readF, "no", 0);
 	public void talk() {
 		inMainLoop = true;
 		while(inMainLoop) {
@@ -23,11 +23,11 @@ package GroupFiles;
 			JimmyMain.print("Do you like to read Fantasy ?");
 			while(inBookLoop){
 				readF = JimmyMain.promptInput();
-				if(Yes>=0){
+				if(yes>=0){
 					JimmyMain.print("Cool! "+ " That's my favorite genre.");
 					inBotLoop = true;
 				}
-				else if (No>=0){
+				else if (no>=0){
 					JimmyMain.print("What genre do you like to read?");
 					userGenre = JimmyMain.promptInput();
 				}
@@ -38,11 +38,11 @@ package GroupFiles;
 				else{
 					JimmyMain.print("Your favorite genre is boring!" + "How about you let me recommend you some fantasy novels?");
 				}
-				if(No>=0){
+				if(no>=0){
 					JimmyMain.print("Then I would rather not talk about books.");
 					JimmyMain.promptForever();
 				}
-				else if (Yes>=0){
+				else if (yes>=0){
 					inBotLoop = true;
 				}
 
