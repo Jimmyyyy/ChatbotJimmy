@@ -34,7 +34,7 @@ public class JimmyCalculator implements Chatbot {
 						|| JimmyMain.findKeyword(mathResponse, "my", 0) >= 0) {
 
 					loop = true;
-					do {
+					while(loop) {
 
 						JimmyMain.print("Ok, please enter your first number:");
 						boolean firstNumLoop = true;
@@ -52,7 +52,7 @@ public class JimmyCalculator implements Chatbot {
 
 						while (!(secondNumLoop = secondNum.matches("[0-9]+"))) {
 							System.out.println("You have entered " + secondNum
-									+ ". Please correctly enter your first number again.");
+									+ ". Please correctly enter your second number again.");
 							secondNum = JimmyMain.promptInput();
 
 						}
@@ -92,6 +92,8 @@ public class JimmyCalculator implements Chatbot {
 								}
 								JimmyMain.print("The answer to your math question, " + firstNum + " " + operator + " "
 										+ secondNum + " is " + answer + ".");
+								JimmyMain.print("Ok. I am tired of talking about math. ");
+								JimmyMain.promptForever();
 
 							} else {
 								JimmyMain.print(
@@ -99,7 +101,7 @@ public class JimmyCalculator implements Chatbot {
 							}
 						}
 
-					} while (loop);
+					}
 
 				} else {
 					JimmyMain.print("Ok whatever! I'll think of a simple math question myself and answer it for you.");
@@ -133,6 +135,8 @@ public class JimmyCalculator implements Chatbot {
 						JimmyMain.print(
 								"My random problem is " + rand3 + " ^ " + rand4 + ". The answer is " + randAnswer);
 					}
+					JimmyMain.print("Ok. I am tired of talking about math. ");
+					JimmyMain.promptForever();
 
 				}
 

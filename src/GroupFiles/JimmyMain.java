@@ -11,7 +11,6 @@ public class JimmyMain {
 
 		static Chatbot books;
 		static Chatbot sports;
-		static Chatbot games;
 		static Chatbot calculator;
 		
 				
@@ -29,7 +28,7 @@ public class JimmyMain {
 
 		public static void promptForever() {
 			inMainLoop = true;
-			print("Hello " + user + "! May I know what your hobby is?");
+			print("Hello " + user + "! May I know what it is that you want to talk about?");
 			while (inMainLoop){
 				response = promptInput();
 				if(findKeyword(response, "no", 0) >= 0 || findKeyword(response, "nah", 0) >= 0){
@@ -135,27 +134,10 @@ public class JimmyMain {
 			books = new IvanBooks();
 		}
 
-		public static void demonstrateStringMethods(){
-			String text1 = new String("What's poppin world!"); 
-			String text2 = "What's poppin world!"; 			//same as above string var
-			
-			if(text1.equals(text2)){
-				print("These strings are equal:");
-			}
-			print(text1);
-			print(text2);
-			
-			String word1 = "aardvark";
-			String word2 = "NotAardvark";
-			
-			if(word1.compareTo(word2) < 0){
-				print("word1 comes before word2.");
-			}
-		}
 		
 		public static void print(String text){
 			String printString = "";
-			int cutoff = 35;
+			int cutoff = 55;
 
 			while(text.length() > 0){
 				String cut = "";
