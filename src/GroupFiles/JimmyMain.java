@@ -36,13 +36,13 @@ public class JimmyMain {
 					print("I will not take " + response + " for an answer");
 					print(user + ", can you tell me what your hobby is?");
 				}
+
 				else if(sports.isTriggered(response)){
-					print("Oh I love " + response +  " as well. Tell me what your favorite sport is.");
+					
 					inMainLoop = false;
 					sports.talk();
 				} 
 				else if(books.isTriggered(response)){
-					print("Oh I love " + response +  " as well. Tell me what your favorite genre is.");
 					inMainLoop = false;
 					books.talk();
 				} 
