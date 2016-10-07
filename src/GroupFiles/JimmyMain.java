@@ -36,25 +36,16 @@ public class JimmyMain {
 					print("I will not take " + response + " for an answer");
 					print(user + ", can you tell me what your hobby is?");
 				}
-				else if(games.isTriggered(response)){
-					print("Oh I love "+ response +" as well. Tell me what your favorite game platform is.");
+				else if(sports.isTriggered(response)){
+					print("Oh I love " + response +  " as well. Tell me what your favorite sport is.");
 					inMainLoop = false;
-					games.talk();
-				}
-	/*			else if(sports.isTriggered(response)){
-					print("Oh I love sports as well. Tell me what your favorite sport is.");
-					//exit while loop
-					inMainLoop = false;
-					//go to school's talk method
 					sports.talk();
 				} 
-				else if(findKeyword(response, "books", 0) >= 0){
-					print("Oh I love reading books as well. Tell me what your favorite genre is.");
-					//exit while loop
+				else if(books.isTriggered(response)){
+					print("Oh I love " + response +  " as well. Tell me what your favorite genre is.");
 					inMainLoop = false;
-					//go to school's talk method
 					books.talk();
-				} */
+				} 
 				else if(calculator.isTriggered(response)){
 					print("Oh I love " + response +  " as well. Would you like me to calculate something?");
 					inMainLoop = false;
@@ -139,10 +130,9 @@ public class JimmyMain {
 			input = new Scanner(System.in);
 			user = "";
 
-			games = new JimmyGames();
 			calculator = new JimmyCalculator();
-	//		sports = new JosephSports();
-	//		books = new IvanBooks();
+			sports = new JosephSports();
+			books = new IvanBooks();
 		}
 
 		public static void demonstrateStringMethods(){

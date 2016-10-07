@@ -8,7 +8,7 @@ public class JimmyCalculator implements Chatbot {
 	private String reply;
 	private Scanner input = new Scanner(System.in);
 	private boolean loop;
-	
+	private boolean loop2;
 	public void talk() {
 		inMathLoop = true;
 		while (inMathLoop) {
@@ -27,18 +27,37 @@ public class JimmyCalculator implements Chatbot {
 					loop = true;
 					do {
 						JimmyMain.print("Ok, please enter your first number:");
+						
 						String firstNum =  JimmyMain.promptInput();
-						int num1 = Integer.parseInt(firstNum.replaceAll("[\\D]", "")); // removes all non digits
-						JimmyMain.print("Your first number is " + num1 + ". Please enter your second number:");
+						while (loop2) {
+							if(firstNum.matches(".*\\d+.*")) {
+								loop2 = false;
+								int num1 = Integer.parseInt(firstNum.replaceAll("[\\D]", "")); // removes all non digits
+								JimmyMain.print("Your first number is " + num1 + ". Please enter your second number:");
+										
+						}
+						else  {
+								JimmyMain.print("Please enter a correct first number again.");	
+							}
+
+							
+						}
+						
 						String secondNum = JimmyMain.promptInput();
 						int num2 = Integer.parseInt(secondNum.replaceAll("[\\D]", ""));
-						JimmyMain.print("Your second number is " + num2 + ". Please enter your operator:");
-						mathResponse = JimmyMain.promptInput();
-						if(mathResponse.equals("+")||mathResponse.equals("-")||mathResponse.equals("*")||mathResponse.equals("/")||mathResponse.equals("^")) {
-							JimmyMain.print("Your equation is " + num1 + mathResponse + num2 + ". Is this correct?");
+						JimmyMain.print("Your second number is " + num2 + ". Please enter your operator: +, -, *, / or ^");
+						
+						String operator = JimmyMain.promptInput();
+						if(operator.equals("+")||operator.equals("-")||operator.equals("*")||operator.equals("/")||operator.equals("^")) {
+							
+							JimmyMain.print("Your equation is " + num2 + mathResponse + num2 + ". Is this correct?");
 							mathResponse = JimmyMain.promptInput();
+							
 							if(JimmyMain.findKeyword(mathResponse, "yes", 0) >= 0) {
+								
+								
 								loop = false;
+								
 								
 							}
 							else {
@@ -61,7 +80,7 @@ public class JimmyCalculator implements Chatbot {
 				
 			}
 			else {
-				JimmyMain.print("That answer was good too");				
+				JimmyMain.print("I did not quite get that. Can you repeat?");				
 			}
 
 		}
