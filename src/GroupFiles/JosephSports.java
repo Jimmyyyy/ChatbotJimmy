@@ -1,8 +1,10 @@
 package GroupFiles;
 
-	public class JosephSports implements Chatbot{
+import java.util.Scanner;
+
+public class JosephSports implements Chatbot{
 	private static String response;
-	private boolean inSportLoop;
+	private static String answer;
 	static boolean inMainLoop;
 	public static String[] sports = {"baseball", "basketball", "hockey", "football"};
 	public static String[] baseballResponse = {"The Mets are my favorite team", "My favorite position is shortstop.", "My favorite player is David Wright."};
@@ -18,10 +20,10 @@ package GroupFiles;
 			response = JimmyMain.promptInput();
 			
 			if(isTriggered(response)) {
-				inSportLoop = false;
+				inMainLoop = false;
 				JimmyMain.promptForever();
 			
-			if (JimmyMain.findKeyword(response, "sports[]", 0) >= 0) {
+			if (JimmyMain.findKeyword(response, "sports", 0) >= 0) {
 				JimmyMain.print("That's wonderful.");
 				sportConversation();
 			} else if (response.indexOf("books") >= 0) {
@@ -44,38 +46,83 @@ package GroupFiles;
 		JimmyMain.print("What sport do you want to talk about?");
 		response = JimmyMain.promptInput();	
 		if(response == "baseball"){
-			JimmyMain.print(baseballResponse[1] +"What is your favorite" + response + "team?");
-			JimmyMain.print(baseballResponse[2] +"What is your favorite position in that sport?");
-			JimmyMain.print(baseballResponse[3] +"Who is your favorite player?");
+			JimmyMain.print("What is your favorite" + response + "team?");
+			answer = JimmyMain.promptInput();
+			if(answer == "Mets"){
+				JimmyMain.print("Great minds think alike");
+			}
+			else{
+				JimmyMain.print("They are ok. I guess.");
+			}
+			JimmyMain.print("What is your favorite position in that sport?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print("Me too.");
+			JimmyMain.print("Who is your favorite player?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print(baseballResponse[2] + "What do you want to talk about now?");
+
 		}
 		else if(response == "basketball"){
-			JimmyMain.print(basketballResponse[1] +"What is your favorite" + response + "team?");
-			JimmyMain.print(basketballResponse[2] +"What is your favorite position in that sport?");
-			JimmyMain.print(basketballResponse[3] +"Who is your favorite player?");
-		}
+			JimmyMain.print("What is your favorite" + response + "team?");
+			answer = JimmyMain.promptInput();
+			if(answer == "Knicks"){
+				JimmyMain.print("Great minds think alike");
+			}
+			else{
+				JimmyMain.print("They are ok. I guess.");
+			}
+			JimmyMain.print("What is your favorite position in that sport?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print("Me too.");
+			JimmyMain.print("Who is your favorite player?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print(basketballResponse[2] + "What do you want to talk about now?");
+		}	
 		else if(response == "hockey"){
-			JimmyMain.print(hockeyResponse[1] +"What is your favorite" + response + "team?");
-			JimmyMain.print(hockeyResponse[2] +"What is your favorite position in that sport?");
-			JimmyMain.print(hockeyResponse[3] +"Who is your favorite player?");
+			JimmyMain.print("What is your favorite" + response + "team?");
+			answer = JimmyMain.promptInput();
+			if(answer == "Rangers"){
+				JimmyMain.print("Great minds think alike");
+			}
+			else{
+				JimmyMain.print("They are ok. I guess.");
+			}
+			JimmyMain.print("What is your favorite position in that sport?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print("Me too.");
+			JimmyMain.print("Who is your favorite player?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print(hockeyResponse[2] + "What do you want to talk about now?");
 		}
 		else if(response == "football"){
-			JimmyMain.print(footballResponse[1] +"What is your favorite" + response + "team?");
-			JimmyMain.print(footballResponse[2] +"What is your favorite position in that sport?");
-			JimmyMain.print(footballResponse[3] +"Who is your favorite player?");
+			JimmyMain.print("What is your favorite" + response + "team?");
+			answer = JimmyMain.promptInput();
+			if(answer == "Giants"){
+				JimmyMain.print("Great minds think alike");
+			}
+			else{
+				JimmyMain.print("They are ok. I guess.");
+			}
+			JimmyMain.print("What is your favorite position in that sport?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print("Me too.");
+			JimmyMain.print("Who is your favorite player?");
+			JimmyMain.input = new Scanner(System.in);
+			JimmyMain.print(footballResponse[2] + "What do you want to talk about now?");
 		}
 		else
 			JimmyMain.print("Sorry I am unfamiliar with that sport. Can we talk about another?");
 	}
-
-
-	public boolean isTriggered(String userInput) {
-		String[] triggers = {"baseball","basketball","hockey","football"}; 
-		for(int i = 0; i< triggers.length; i++) {	
-		if(JimmyMain.findKeyword(userInput, triggers[i], 0) >=0 ){
+	
+	public  boolean isTriggered(String userInput) {
+		String[] triggers = {"baseball","basketball","hockey","football", "sports"};
+		for(int i = 0; i< triggers.length; i++) {
+			if (JimmyMain.findKeyword(userInput,triggers[i],0)
+					>= 0) {
 				return true;
+			}
+	
 		}
-			return false;
-		}
-		return inSportLoop;
+		return false;
 	}
 }	
