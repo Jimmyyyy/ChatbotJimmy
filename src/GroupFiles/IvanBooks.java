@@ -42,7 +42,7 @@ public class IvanBooks implements Chatbot{
 						JimmyMain.print("Then I would rather not talk about books.");
 						JimmyMain.promptForever();
 					}
-					else if(JimmyMain.findKeyword(readA, "ok", 0)>=0){
+					else if(JimmyMain.findKeyword(readA, "yes", 0)>=0){
 						JimmyMain.print("Awesome!");
 						inAntLoop = false;
 						inBotLoop = true;
